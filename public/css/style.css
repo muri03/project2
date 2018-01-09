@@ -1,0 +1,51 @@
+
+body {
+	height: 100%;
+	background-image: url('../images/space.jpg');
+	background-repeat: repeat-y;
+    background-size: cover;
+    font-size: 25px;
+	font-family: 'Ranga', cursive;
+
+}
+
+.jumbotron {
+	 opacity: 0.6;
+}
+
+.card{
+	opacity: 0.6;
+	font-size: 25px;
+	font-family: 'Ranga', cursive;
+	background-color: lightgrey;	
+	width: 500px;
+}
+
+.navbar{
+	opacity: 0.6;
+	font-size: 25px;
+	font-family: 'Ranga', cursive;
+	background-color: lightgrey;	
+}
+
+.navbar:hover{
+	background-color: #110447;
+}
+
+#button:hover{
+	background-color: #110447;
+}
+
+#landing{
+	margin-top: 5%;
+  	animation: pulse 5s infinite;
+}
+
+
+
+
+
+
+
+
+
