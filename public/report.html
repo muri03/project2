@@ -8,17 +8,12 @@
 	<!--google fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
 	<title>Report the TRUTH</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<!-- favicon -->
 	<link rel="shortcut icon" href="http://www.style-your-car.ch/shop/images/Alien%20Kopf.jpg"/>
 	<!--animate.css-->
 	<link rel="stylesheet"
   	href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-	
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-
 </head> 
 
 
@@ -104,12 +99,12 @@
 
 						<div class="form-group col-md-6">
 						      <label for="inputCity">Country:</label>
-						      <input type="text" class="form-control" id="inputCity">
+						      <input type="text" class="form-control" id="inputCountry">
 					    </div>
 
 					    <div class="form-group col-md-6">
 						      <label for="inputCity">State:</label>
-						      <input type="text" class="form-control" id="inputCity">
+						      <input type="text" class="form-control" id="inputState">
 					    </div>
 
 				     </div>
@@ -118,7 +113,7 @@
 
 				     	 <div class="form-group col-md-6">
 							  <label for="inputState">City:</label>
-						      <input type="text" class="form-control" id="inputState">    
+						      <input type="text" class="form-control" id="inputCity">    
 				    	</div>
 
 				    	<div class="form-group col-md-6">
@@ -130,15 +125,20 @@
 						<br>
 
 				    	<div>
-							<button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+							<button id = "report-submit" type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
 						</div>
   
 				</div>
 			</div>
 		</div>
 </form>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<!-- jQuery-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<!-- popper.js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<!--boostrap-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+	<!--js-->
+	<script type="text/javascript" src="js/views.js"></script>
 </body>
 </html>
