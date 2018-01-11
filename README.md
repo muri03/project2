@@ -8,8 +8,8 @@
 
 ## Team Members
 
-* Denise Erazmus- Frontend, jQuery, organization
-* Murial M - Frontend, map intergration
+* Denise Erazmus- Frontend, Landing and "Report" pages,jQuery, organization
+* Murial M - Frontend, "Find" page, map intergration
 * Brett - Backend, MySQL, Sequelize
 * Vinnie- Backend, MySQL, Sequelize
 
@@ -17,7 +17,8 @@
 * HTML/CSS/Bootstrap 4
 * MySQL
 * Sequalize
-* NPM packages: 
+* NPM packages: CountryStatesjs, CountryNames, Change-case. 
+* Google Maps API
 * Heroku
 * Github
 
