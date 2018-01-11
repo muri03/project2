@@ -52,7 +52,7 @@ $(document).ready(function(){
     }
     });
 
-
+//functions for adding to database using form on repot.html
     var selText = "";
         $(".dropdown-menu a").click(function(){
           selText = $(this).text();
