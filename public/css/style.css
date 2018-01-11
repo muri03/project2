@@ -1,7 +1,7 @@
 
 body {
 	height: 100%;
-	background-image: url('../images/space.jpg');
+	background-image: url('../assets/images/space.jpg');
 	background-repeat: repeat-y;
     background-size: cover;
     font-size: 25px;
