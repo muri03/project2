@@ -5,6 +5,10 @@
 // Dependencies
 // =============================================================
 var Encounter = require("../models/encounter.js");
+var sequelize = require("sequelize");
+var country = require("countrystatesjs");
+var countrynames = require("countrynames");
+var changeCase = require("change-case");
 
 // Routes
 // =============================================================
@@ -26,56 +30,145 @@ module.exports = function(app) {
         //});
     //});
 
-  // Search for Encounters by city, state & country then provides JSON
-  app.get("/api/:city?:state?:country?", function(req,res) {
+  // Get list of 
 
+  // Search for Encounters by city, state & country then provides JSON
+  app.get("/api/:country?/:state?/:city?", function(req,res) {
     // Display data for all of the encounters.
+    if(req.params.city != null){
+
     Encounter.findAll({
       where: {
-        city: req.params.city,
+        country: req.params.country,
         state: req.params.state,
-        country: req.params.country
+        city: req.params.city
       },
-      order: ['encounter_date','DESC'],
+      order: [
+        ['encounter_date','DESC']
+      ],
       limit:10
     })
       .then(function(result) {
         return res.json(result);
       });
+    } else if(req.params.state != null){
+      Encounter.findAll({
+        where: {
+          country: req.params.country,
+          state: req.params.state,
+        },
+        order: [
+          ['encounter_date','DESC']
+        ],
+        limit:10
+      })
+        .then(function(result) {
+          return res.json(result);
+        });
+      } else if(req.params.country != null){
+      Encounter.findAll({
+        where: {
+          country: req.params.country,
+        },
+        order: [
+          ['encounter_date','DESC']
+        ],
+        limit:10
+      })
+        .then(function(result) {
+          return res.json(result);
+        });
+      } else {
+        Encounter.findAll({
+          attributes: [[sequelize.fn('DISTINCT', sequelize.col('country')), 'country']],
+          order: [
+            ['country','ASC']
+          ]
+        })
+          .then(function(result) {
+            var countryArray = [];
+            for(var i = 0; i < result.length; i++){
+              if(result[i].dataValues.country != ""){
+                countryArray.push(country.name(result[i].dataValues.country.toUpperCase()));
+              }
+            };
+            console.log(countryArray);
+            return res.json(countryArray);
+          });
+      }
   });
 
-  // Search for Encounters by state & country
+  // Get list of states
 
-  app.get("/api/:state?:country?", function(req,res) {
-
-    // Display data for all of the encounters.
+  app.get("/list/:country?",function(req,res) {
     Encounter.findAll({
+      attributes: [[sequelize.fn('DISTINCT', sequelize.col('state')), 'state']],
       where: {
-        state: req.params.state,
-        country: req.params.country
+        country: countrynames.getCode(req.params.country).toLowerCase()
       },
-      order: ['encounter_date','DESC'],
-      limit: 10
+      order: [
+        ['state','ASC']
+      ]
     })
       .then(function(result) {
-        return res.json(result);
+        var stateArray = [];
+        for(var i = 0; i < result.length; i++){
+          stateArray.push(country.name(req.params.country,result[i].dataValues.state));
+        };
+        return res.json(stateArray);
       });
   });
 
-  // Search for Encounters by country
+  // Get list of cities based on state
 
-  app.get("/api/:country?", function(req,res) {
-
-    // Display data for all of the encounters.
+  app.get("/list/:country?/:state?",function(req,res) {
+    var state;
+    if(req.params.state === "N/A"){
+      console.log("null");
+      state = null;
+    } else{
+      state = country.state(req.params.country,req.params.state).abbreviation;
+    }
+    console.log(state);
     Encounter.findAll({
+      attributes: [[sequelize.fn('DISTINCT', sequelize.col('city')), 'city']],
       where: {
-        country: req.params.country
+        country: countrynames.getCode(req.params.country).toLowerCase(),
+        state: state
       },
-      order: ['encounter_date','DESC'],
-      limit: 10
+      order: [
+        ['city','ASC']
+      ]
     })
       .then(function(result) {
-        return res.json(result);
+        var cityArray = [];
+        for(var i = 0; i < result.length; i++){
+          cityArray.push(changeCase.headerCase(result[i].dataValues.city));
+        }
+        return res.json(cityArray);
+      });
+  });
+
+  // Get list of cities based on country
+
+  app.get("/list2/:country?",function(req,res) {
+  
+    Encounter.findAll({
+      attributes: [[sequelize.fn('DISTINCT', sequelize.col('city')), 'city']],
+      where: {
+        country: countrynames.getCode(req.params.country).toLowerCase(),
+      },
+      order: [
+        ['city','ASC']
+      ]
+    })
+      .then(function(result) {
+        console.log(result);
+        var cityArray = [];
+        for(var i = 0; i < result.length; i++){
+          cityArray.push(changeCase.headerCase(result[i].dataValues.city));
+        }
+        return res.json(cityArray);
       });
   });
 
@@ -86,8 +179,10 @@ module.exports = function(app) {
     Encounter.findAll({
       where: {
         encounter_date: req.params.date
-      }
-      order: ['encounter_date','DESC'],
+      },
+      order: [
+        ['encounter_date','DESC']
+      ],
       limit: 10
     })
       .then(function(result){
