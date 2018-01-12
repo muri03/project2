@@ -130,3 +130,15 @@ $(document).ready(function() {
     $newItemInput.val("");
   }
 });
+/* function to dynamically change the iframe map- still not working line 138 on INDEX.HTML
+changeSrc(chicago);
+
+          function changeSrc(myobj) {
+
+          // we grab what the database specifies
+          var userLocation = myobj;
+
+                      //once submit gets clicked we change the path of the iframe to what the user has typed
+  ID FROM INDEX.HTML $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
+}
+*/
