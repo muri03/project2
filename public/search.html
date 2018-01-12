@@ -48,7 +48,7 @@
     <header>
       <div class="row">
         <!--Carousel-->
-        <div class="col-8" style="height: 250px;width: 100px">
+        <div class="col-9">
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -61,7 +61,7 @@
                  <img class="d-block w-100 mt" src="../public/assets/images/image1.jpg" alt="First slide">
             <div class="container">
             <div class="carousel-caption d-none d-sm-block text-right mb-5">
-              <h1 class="display-7">Missouri 2017</h1>
+              <h1 class="display-9">Missouri 2017</h1>
               <p class="lead">An "Orange Orb" lights the clouds above Missouri River.</p>
               <a href="http://www.ufosightingsdaily.com/2017/11/hunter-records-ufo-over-missouri-river.html" class="btn btn-primary btn-sm">Learn More</a>
             </div>
@@ -72,7 +72,7 @@
             <img class="d-block w-100" src="../public/assets/images/image2.jpg" alt="Second slide">
                <div class="container">
               <div class="carousel-caption d-none d-sm-block text-right mb-5">
-                <h1 class="display-7">Afghanistan 2014 </h1>
+                <h1 class="display-9">Afghanistan 2014 </h1>
                  <p class="lead">U.S. Marines captured this image of what looks like a UFO hovering over a Taliban encampment.</p>
                 <a href="http://www.mirror.co.uk/news/weird-news/video-watch-ufo-attack-taliban-3510483" class="btn btn-primary btn-sm">Learn More</a>
               </div>
@@ -83,7 +83,7 @@
               <img class="d-block w-100" src="../public/assets/images/image3.jpg" alt="Third slide">
                    <div class="container">
             <div class="carousel-caption d-none d-sm-block text-right text-white mb-5">
-              <h1 class="display-7">Oregon 2012 </h1>
+              <h1 class="display-9">Oregon 2012 </h1>
               <p class="lead">Pilot took a picture of a "blurred object" flying faster than his plane.</p>
               <a href="http://www.ufocasebook.com/bestufopictures15.html" class="btn btn-primary btn-sm">Learn More</a>
             </div>
@@ -103,29 +103,41 @@
      </div>
 
        <!-- Search Panel-->
-          <div class="col-4">
+          <div class="col-3">
             <div class="card bg-primary text-center card-form">
               <div class="card-body">
                 <br>
                 <br>
                 <h3>Quick Search</h3>
-                <p class="text-center">To explore the vast database of UFO sightings in the US and around the world. Please fill in the form below.</p>
+                <p class="text-center">To explore the vast database of UFO sightings in the US and around the world. Choose from the selection below.</p>
                 <form>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <input type="date" class="form-control" id="eventDate" placeholder="MM/DD/YY">
                 </div>
+                /
                   <div class="form-group">
                       <input type="date" class="form-control" id="eventDate" placeholder="MM/DD/YY">
-                  </div>
+                  </div> -->
+                   <div class="form-group">
+                  <select id="country">
+                      <option value=null>Country</option>
+                 </select>
+               </div>
                   <div class="form-group">
-                      <input type="text" class="form-control form-control-lg" placeholder="City">
-                  </div>
+                  <select id="state">
+                      <option value=null>State</option>
+                 </select>
+               </div>
                   <div class="form-group">
-                      <input type="email" class="form-control form-control-lg" placeholder="Country">
-                  </div>
-                  <div class="form-group">
-                      <input type="number" class="form-control form-control-lg" placeholder="US Zipcode">
-                  </div>
+                  <select id="city">
+                      <option value=null> City </option>
+                 </select>
+               </div>
+                    <div class="form-group">
+                  <select id="zipcode w-100" >
+                      <option value=null> US Zipcode </option>
+                 </select>
+               </div>
                     <input type="submit" class="btn btn-outline-light btn-block">
                 </form>
               </div>

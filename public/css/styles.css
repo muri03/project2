@@ -1,6 +1,6 @@
 body {
-	background-image: url('../public/assets/images/space.jpg');
-    background-size: cover;
+	 background-image: url("../public/assets/images/space.jpg");
+   background-color: grey;
 }
 
 
@@ -24,6 +24,9 @@ body {
     bottom: auto;
 }
 
+.carousel-item{
+  height: 443px;
+}
 
 .carousel-image-1 {
  /* background: url("../images/image1.png");*/
