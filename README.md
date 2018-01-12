@@ -20,7 +20,7 @@ The TRUTH is an UFO database site. Upon going to the site, you will be asked if 
 * MySQL
 * Sequelize
 * NPM packages- 
-	** countrystatejs- https://www.npmjs.com/package/countrystatesjs
-	** countrynames - https://www.npmjs.com/package/countrynames
-	** changecase - https://www.npmjs.com/package/change-case
+1. countrystatejs- https://www.npmjs.com/package/countrystatesjs
+2. countrynames - https://www.npmjs.com/package/countrynames
+3. changecase - https://www.npmjs.com/package/change-case
 * database used- National UFO reporting center- http://nuforc.org/
