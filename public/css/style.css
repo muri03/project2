@@ -1,76 +1,69 @@
-
 body {
-	height: 100%;
-	background-image: url('../assets/images/space.jpg');
-	background-repeat: repeat-y;
+    height: 100%;
+    background-image: url('../assets/images/space.jpg');
+    background-repeat: repeat-y;
     background-size: cover;
     font-size: 25px;
-	font-family: 'Ranga', cursive;
-
+    font-family: 'Ranga', cursive;
 }
-
 .jumbotron {
-	 opacity: 0.6;
+     opacity: 0.6;
 }
-
 .card{
-	opacity: 0.6;
-	font-size: 25px;
-	font-family: 'Ranga', cursive;
-	background-color: lightgrey;	
-	width: 500px;
+    opacity: 0.6;
+    font-size: 25px;
+    font-family: 'Ranga', cursive;
+    background-color: lightgrey;    
+    width: 500px;
 }
-
 .navbar{
-	opacity: 0.6;
-	font-size: 25px;
-	font-family: 'Ranga', cursive;
-	background-color: lightgrey;	
+    opacity: 0.6;
+    font-size: 25px;
+    font-family: 'Ranga', cursive;
+    background-color: lightgrey;    
 }
-
 .navbar:hover{
-	background-color: #110447;
+    background-color: #110447;
 }
-
 #button:hover{
-	background-color: #110447;
+    background-color: #110447;
 }
-
 #landing{
-	margin-top: 5%;
-  	animation: pulse 5s infinite;
+    margin-top: 5%;
+    animation: pulse 5s infinite;
 }
-
 .carousel-item {
-  height: 545px; }
-
+  height: 590px;
+  font-family: 'Ranga', cursive;
+  color: pink;
+   }
 .carousel-image-1 {
   /*background: url("../images/image1.png");*/
-  background-size: cover; }
-
+  background-size: cover; 
+  }
 .carousel-image-2 {
   /*background: url("../images/image2.jpg");*/
   background-size: cover; }
-
 .carousel-image-3 {
  /* background: url("../images/image3.jpg");*/
   background-size: cover; }
-
+ .card-body{
+    background-color: #e9ecef;
+ }
 footer { 
    /* position: fixed;*/
     /*left: 0;
     bottom: 0;*/
-	 margin: 40px 0 0 0;
+     margin: 40px 0 0 0;
     width: 100%;
-    background-color: darkgrey;
+    /*background-color: darkgrey;*/
     color: black;
     text-align: center;
     font-size: 15px;
     opacity: 0.6;
-	font-family: 'Ranga', cursive;
-	background-color: lightgrey;	
+    font-family: 'Ranga', cursive;
+    background-color: lightgrey; 
 }
-
 
 
 

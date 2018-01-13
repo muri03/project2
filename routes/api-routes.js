@@ -9,6 +9,7 @@ var sequelize = require("sequelize");
 var country = require("countrystatesjs");
 var countrynames = require("countrynames");
 var changeCase = require("change-case");
+var zipcodes = require('zipcodes');
 
 // Routes
 // =============================================================
@@ -33,15 +34,36 @@ module.exports = function(app) {
   // Get list of 
 
   // Search for Encounters by city, state & country then provides JSON
-  app.get("/api/:country?/:state?/:city?", function(req,res) {
-    // Display data for all of the encounters.
-    if(req.params.city != null){
 
-    Encounter.findAll({
+app.get("/findcountry/:country?",function(req,res){
+   Encounter.findAll({
       where: {
-        country: req.params.country,
-        state: req.params.state,
-        city: req.params.city
+        $or: [
+          {country: countrynames.getCode(req.params.country).toLowerCase()},
+          {country:req.params.country}
+        ]
+      },
+      order: [
+        ['encounter_date','DESC']
+      ],
+      limit:10
+    })
+      .then(function(result) {        
+        return res.json(result);
+      });
+});
+
+app.get("/findstate/:country?/:state?",function(req,res){
+   Encounter.findAll({
+      where: {
+        $or: [
+          {country: countrynames.getCode(req.params.country).toLowerCase()},
+          {country: req.params.country}
+        ],
+        $or: [
+          {state: country.state(req.params.country,req.params.state).abbreviation.toLowerCase()},
+          {state: req.params.state}
+        ]
       },
       order: [
         ['encounter_date','DESC']
@@ -49,6 +71,75 @@ module.exports = function(app) {
       limit:10
     })
       .then(function(result) {
+        
+        return res.json(result);
+      });
+});
+
+app.get("/findcity/:country?/:city?",function(req,res){
+   Encounter.findAll({
+      where: {
+        $or: [
+          {country: countrynames.getCode(req.params.country).toLowerCase()},
+          {country: req.params.country}
+        ],
+        city: req.params.city.toLowerCase()
+      },
+      order: [
+        ['encounter_date','DESC']
+      ],
+      limit:10
+    })
+      .then(function(result) {
+        //var description = result[0].dataValues.description;
+        
+        return res.json(result);
+      });
+});
+
+app.get("/findcitystate/:country?/:state?/:city?",function(req,res){
+   Encounter.findAll({
+      where: {
+        $or: [
+          {country: countrynames.getCode(req.params.country).toLowerCase()},
+          {country: req.params.country}
+        ],
+        $or: [
+          {state: country.state(req.params.country,req.params.state).abbreviation.toLowerCase()},
+          {state: req.params.state}
+        ],
+        city: req.params.city.toLowerCase()
+      },
+      order: [
+        ['encounter_date','DESC']
+      ],
+      limit:10
+    })
+      .then(function(result) {
+        //var description = result[0].dataValues.description;
+        
+        return res.json(result);
+      });
+});
+
+  app.get("/api/:country?/:state?/:city?", function(req,res) {
+    // Display data for all of the encounters.
+    if(req.params.city != null){
+
+    Encounter.findAll({
+      where: {
+        country: countrynames.getCode(req.params.country).toLowerCase(),
+        state: country.state(req.params.country,req.params.state).abbreviation.toLowerCase(),
+        city: req.params.city.toLowerCase().replace(/-/g, ' ')
+      },
+      order: [
+        ['encounter_date','DESC']
+      ],
+      limit:10
+    })
+      .then(function(result) {
+        //var description = result[0].dataValues.description;
+        
         return res.json(result);
       });
     } else if(req.params.state != null){
@@ -88,7 +179,7 @@ module.exports = function(app) {
           .then(function(result) {
             var countryArray = [];
             for(var i = 0; i < result.length; i++){
-              if(result[i].dataValues.country != ""){
+              if(country.name(result[i].dataValues.country.toUpperCase()) != undefined){
                 countryArray.push(country.name(result[i].dataValues.country.toUpperCase()));
               }
             };
@@ -143,7 +234,7 @@ module.exports = function(app) {
       .then(function(result) {
         var cityArray = [];
         for(var i = 0; i < result.length; i++){
-          cityArray.push(changeCase.headerCase(result[i].dataValues.city));
+          cityArray.push(result[i].dataValues.city);
         }
         return res.json(cityArray);
       });
@@ -166,8 +257,9 @@ module.exports = function(app) {
         console.log(result);
         var cityArray = [];
         for(var i = 0; i < result.length; i++){
-          cityArray.push(changeCase.headerCase(result[i].dataValues.city));
+          cityArray.push(result[i].dataValues.city);
         }
+        console.log(cityArray)
         return res.json(cityArray);
       });
   });
@@ -196,6 +288,11 @@ module.exports = function(app) {
     // Take the request...
     var encounter = req.body;
 
+    var zipObject = zipcodes.lookup(encounter.zipcode);
+
+    var lat = zipObject.latitude;
+    var long = zipObject.longitude;
+
     // Then add the encounter to the database using sequelize
     Encounter.create({
       encounter_date: encounter.date,
@@ -206,9 +303,17 @@ module.exports = function(app) {
       duration: encounter.duration,
       description: encounter.description,
       reported_date: encounter.reported,
-      latitude: encounter.latitude,
-      longitude: encounter.longitude,
+      latitude: lat,
+      longitude: long
       //zipcode: encounter.zipcode
+    }).then(function(dbEncounter) {
+      // We have access to the new encounter as an argument inside of the callback function
+      res.json(dbEncounter);
+    })
+    .catch(function(err) {
+      // Whenever a validation or flag fails, an error is thrown
+      // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+      res.json(err);
     });
 
   });

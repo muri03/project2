@@ -7,7 +7,7 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
 // Creates a "Encounter" model that matches up with DB
-var Encounter = sequelize.define("encounter", {
+var Encounter = sequelize.define("alien_encounter", {
   // encounter date (date & time)
   encounter_date: Sequelize.DATE,
   // city of the encounter (a string)
@@ -19,11 +19,11 @@ var Encounter = sequelize.define("encounter", {
   // shape of the encoutered object (a string)
   object_shape: Sequelize.STRING,
   // duration of the encounter (an int)
-  duration: Sequelize.INT,
+  duration: Sequelize.INTEGER,
   // description of the encounter (a string)
   description: Sequelize.STRING,
   // date the encounter was reported (date & time)
-  reported_date: Sequelize.NOW,
+  reported_date: Sequelize.DATE,
   // latitude coordinate of the encounter (decimal)
   latitude: Sequelize.DECIMAL(25,20),
   // longitude coordinate of the encounter (decimal)
