@@ -33,3 +33,11 @@ require("./routes/html-routes.js")(app);
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
+
+
+//db.sequelize.sync().then(function() {
+//  http.createServer(app).listen(app.get('port'), function(){
+//    console.log('Express server listening on port ' + app.get('port'));
+//  });
+//});

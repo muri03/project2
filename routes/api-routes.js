@@ -179,8 +179,10 @@ app.get("/findcitystate/:country?/:state?/:city?",function(req,res){
           .then(function(result) {
             var countryArray = [];
             for(var i = 0; i < result.length; i++){
-              if(country.name(result[i].dataValues.country.toUpperCase()) != undefined){
-                countryArray.push(country.name(result[i].dataValues.country.toUpperCase()));
+              if (country && country.name && result[i] && result[i].dataValues && result[i].dataValues.country) {
+                if(country.name(result[i].dataValues.country.toUpperCase()) != undefined){
+                  countryArray.push(country.name(result[i].dataValues.country.toUpperCase()));
+                }
               }
             };
             console.log(countryArray);
