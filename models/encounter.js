@@ -13,7 +13,6 @@ var sequelize = require("../config/connection.js");
 
 // Creates a "Encounter" model that matches up with DB
 var Encounter = sequelize.define("alien_encounter", {
-     tableName: 'alien_encounter',
   // encounter date (date & time)
   encounter_date: Sequelize.DATE,
   // city of the encounter (a string)
@@ -37,7 +36,8 @@ var Encounter = sequelize.define("alien_encounter", {
   // zipcode (a string)
   zipcode: Sequelize.STRING
 }, {
-  timestamps: false
+  timestamps: false,
+  tableName: 'alien_encounter',
 });
 
 // Syncs with DB
