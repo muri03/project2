@@ -19,7 +19,7 @@ var sequelize = new Sequelize("alien_encounter_db", "root", "admin", {
 */
 
 if (process.env.JAWSDB_URL) {
-	sequelize = new Sequelize('process.env.JAWSDB_URL', {})
+	sequelize = new Sequelize(process.env.JAWSDB_URL, {})
 } else { 
 	sequelize = new Sequelize(
 		"alien_encounter_db", "root", "admin", {
